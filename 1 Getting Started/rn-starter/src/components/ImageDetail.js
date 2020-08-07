@@ -4,10 +4,9 @@ import { View, Text, StyleSheet, Image } from "react-native";
 const ImageDetail = (props) => {
   return (
     <View>
-      <Text>
-        This is {props.title}. It's score is {props.imageScore}
-      </Text>
+      <Text>{props.title}.</Text>
       <Image source={props.imageSource} />
+      <Text> Image score: {props.imageScore}</Text>
     </View>
   );
 };
