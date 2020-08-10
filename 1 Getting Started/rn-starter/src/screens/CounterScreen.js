@@ -1,31 +1,47 @@
-import React, { useState } from "react";
+import React, { useReducer } from "react";
 import { View, Text, StyleSheet, Button } from "react-native";
 
-const CounterScreen = (props) => {
-  // let counter = 0; // not the correct way to initialize state.
-  // using let doesnt inform react that variable has changed hence its value doesnt change on screen
+const INCREMENT_STEP = 10;
 
-  // Correct way - react will keep watching this variable and will update the screen when variable changes
-  const [counter, setCounter] = useState(0);
-  // [] - is array destructuring, a mwthod to reference or pull elements of an array
+const counterFunc = (state, action) => {
+  switch (action.type) {
+    case "increase_count":
+      return { ...state, count: state.count + INCREMENT_STEP };
+    case "decrease_count":
+      return { ...state, count: state.count - INCREMENT_STEP };
+    case "reset_count":
+      return { ...state, count: 0 };
+    default:
+      return state;
+  }
+};
+
+const CounterScreen = (props) => {
+  // creating initial state and dispatch
+  const [state, dispatch] = useReducer(counterFunc, { count: 0 });
+  const { count } = state;
 
   return (
     <View>
       <Button
         title="Increase"
         onPress={() => {
-          // counter++; // this is not compatible with useState syntax. We never modify state variable directly
-          setCounter(counter + 1);
+          dispatch({ type: "increase_count", payload: INCREMENT_STEP });
         }}
       />
       <Button
         title="Decrease"
         onPress={() => {
-          // counter--;
-          setCounter(counter - 1);
+          dispatch({ type: "decrease_count", payload: INCREMENT_STEP });
         }}
       />
-      <Text>Current Count: {counter}</Text>
+      <Text>Current Count: {count}</Text>
+      <Button
+        title="Reset"
+        onPress={() => {
+          dispatch({ type: "reset_count", payload: INCREMENT_STEP });
+        }}
+      />
     </View>
   );
 };
