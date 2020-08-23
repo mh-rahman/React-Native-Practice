@@ -25,6 +25,8 @@ const reducer = (state, action) => {
         state.blue + action.payload < 0
         ? state
         : { ...state, blue: state.blue + action.payload };
+    case "reset":
+      return { red: 0, green: 0, blue: 0 };
     default:
       return state;
   }
@@ -80,9 +82,7 @@ const ColorPicker = () => {
       <Button
         title={"Reset"}
         onPress={() => {
-          setRed(0);
-          setBlue(0);
-          setGreen(0);
+          dispatch({ type: "reset" });
         }}
       />
     </View>

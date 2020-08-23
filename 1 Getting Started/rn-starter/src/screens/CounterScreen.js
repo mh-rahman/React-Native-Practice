@@ -3,7 +3,7 @@ import { View, Text, StyleSheet, Button } from "react-native";
 
 const INCREMENT_STEP = 10;
 
-const counterFunc = (state, action) => {
+const reducer = (state, action) => {
   switch (action.type) {
     case "increase_count":
       return { ...state, count: state.count + INCREMENT_STEP };
@@ -18,7 +18,7 @@ const counterFunc = (state, action) => {
 
 const CounterScreen = (props) => {
   // creating initial state and dispatch
-  const [state, dispatch] = useReducer(counterFunc, { count: 0 });
+  const [state, dispatch] = useReducer(reducer, { count: 0 });
   const { count } = state;
 
   return (

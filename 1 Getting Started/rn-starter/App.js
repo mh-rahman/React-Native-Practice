@@ -7,6 +7,8 @@ import ImageScreen from "./src/screens/ImageScreen";
 import CounterScreen from "./src/screens/CounterScreen";
 import ColorScreen from "./src/screens/ColorScreen";
 import ColorPicker from "./src/screens/ColorPicker";
+import TextScreen from "./src/screens/TextScreen";
+import BoxScreen from "./src/screens/BoxScreen";
 
 const navigator = createStackNavigator(
   // createStackNavigator helps us to navigate, decide what content is displayed on screen
@@ -19,10 +21,11 @@ const navigator = createStackNavigator(
     Counter: CounterScreen,
     Color: ColorScreen,
     ColorPicker: ColorPicker,
+    Text: TextScreen,
+    BoxScreen: BoxScreen,
   },
   {
-    // initialRouteName - configuration option that tells createStackNavigator what route/componet should be displayed first
-    // initialRouteName: "Home",
+    // initialRouteName - configuration option that tells createStackNavigator what route/component should be displayed first
     initialRouteName: "Home",
     defaultNavigationOptions: {
       title: "App",
